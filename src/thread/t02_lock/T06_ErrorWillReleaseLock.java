@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2020/08/30
  * @desc
  */
-public class T06_ErrorReleaseLock {
+public class T06_ErrorWillReleaseLock {
     int count = 0;
 
     synchronized void m() {
@@ -28,7 +28,7 @@ public class T06_ErrorReleaseLock {
     }
 
     public static void main(String[] args) {
-        T06_ErrorReleaseLock t = new T06_ErrorReleaseLock();
+        T06_ErrorWillReleaseLock t = new T06_ErrorWillReleaseLock();
         new Thread(t::m,"T1").start();
 
         try {

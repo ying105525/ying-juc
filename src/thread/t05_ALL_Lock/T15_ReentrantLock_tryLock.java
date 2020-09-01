@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @date 2020/09/01
  * @desc 使用reentrantlock可以进行“尝试锁定”tryLock，这样无法锁定，或者在指定时间内无法锁定，线程可以决定是否继续等待
  */
-public class T15_ReentrantLock {
+public class T15_ReentrantLock_tryLock {
     Lock lock = new ReentrantLock();
 
     void m1() {
@@ -44,7 +44,7 @@ public class T15_ReentrantLock {
     }
 
     public static void main(String[] args) {
-        T15_ReentrantLock reentrantLock = new T15_ReentrantLock();
+        T15_ReentrantLock_tryLock reentrantLock = new T15_ReentrantLock_tryLock();
         new Thread(reentrantLock::m1).start();
         try{
             TimeUnit.SECONDS.sleep(1);

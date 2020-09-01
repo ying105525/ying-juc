@@ -15,7 +15,7 @@ import java.util.concurrent.locks.ReentrantLock;
  *   需要注意的是，必须要必须要必须要手动释放锁（重要的事情说三遍）
  *   使用syn锁定的话如果遇到异常，jvm会自动释放锁，但是lock必须手动释放锁，因此经常在finally中进行锁的释放,除了这里还有哪里可以释放
  */
-public class T14_ReentrantLock {
+public class T14_ReentrantLock_lock_unlock {
     Lock lock = new ReentrantLock();
 
     void m1(){
@@ -39,7 +39,7 @@ public class T14_ReentrantLock {
     }
 
     public static void main(String[] args) {
-        T14_ReentrantLock reentrantLock = new T14_ReentrantLock();
+        T14_ReentrantLock_lock_unlock reentrantLock = new T14_ReentrantLock_lock_unlock();
         new Thread(()->{
             reentrantLock.m1();
         },"Thread1").start();
