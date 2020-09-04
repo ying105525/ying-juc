@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * CHM： 因为currenthashmap将数据分段，分成一段一段的，每一段都加锁，锁分离技术，访问的时候，
  * * 访问第一段数据，第一段加锁，第二段没有锁，其他线程还是可以访问第二段的数据的，所以比自己hashmap加锁的效率要高
  */
-public class T35_HashMap {
+public class T35_AllHashMap {
     public static final int COUNT = 1000000;
     public static final int THREAD_COUNT = 100;
     static Map<UUID, UUID> m = new ConcurrentHashMap<>();
