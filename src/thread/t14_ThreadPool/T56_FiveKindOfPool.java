@@ -132,6 +132,10 @@ public class T56_FiveKindOfPool {
         workStealingPool.execute(new R(2000));
         workStealingPool.execute(new R(2000)); //daemon
         workStealingPool.execute(new R(2000));
+        workStealingPool.execute(new R(2000));
+        workStealingPool.execute(new R(2000));
+        workStealingPool.execute(new R(2000)); //daemon
+        workStealingPool.execute(new R(2000));
 
         //由于产生的是精灵线程（守护线程、后台线程），主线程不阻塞的话，看不到输出
         System.in.read();
