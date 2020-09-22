@@ -22,6 +22,7 @@ public class T19_CyclicBarrier {
                 try {
                     //每个线程都进行等待，等待栅栏放倒
                     barrier.await();
+//                    barrier.reset();//重置，会打断当前等待，
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (BrokenBarrierException e) {

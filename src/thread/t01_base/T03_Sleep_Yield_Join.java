@@ -50,6 +50,13 @@ public class T03_Sleep_Yield_Join {
                     e.printStackTrace();
                 }
             }
+            try {
+                Thread.sleep(5000);
+                Thread.yield();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("AAAAAAAAAAA");
         });
 
         Thread t2 = new Thread(()->{

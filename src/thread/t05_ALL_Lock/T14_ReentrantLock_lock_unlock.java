@@ -21,10 +21,11 @@ public class T14_ReentrantLock_lock_unlock {
     void m1(){
         try{
             lock.lock();
-            for(int i = 0; i< 10; i++){
-                TimeUnit.SECONDS.sleep(1);
+            for(int i = 0; i< 2; i++){
+                TimeUnit.SECONDS.sleep(2);
                 System.out.println(i);
             }
+            TimeUnit.SECONDS.sleep(200);
         }catch (InterruptedException e){
             e.printStackTrace();
         }finally {

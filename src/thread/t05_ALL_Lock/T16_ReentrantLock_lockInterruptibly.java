@@ -34,6 +34,7 @@ public class T16_ReentrantLock_lockInterruptibly {
 
         Thread t2 = new Thread(()->{
             try {
+                System.out.println("t2 尝试获取锁");
                 lock.lockInterruptibly();
                 System.out.println("t2 start");
                 TimeUnit.SECONDS.sleep(2);
@@ -56,6 +57,7 @@ public class T16_ReentrantLock_lockInterruptibly {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        System.out.println("进行打断t2");
         t2.interrupt();
     }
 
