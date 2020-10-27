@@ -13,7 +13,7 @@ public class T32_Singleton {
         System.out.println("singleton");
     }
 
-//    静态内部类，内部喊一个私有的成员静态变量
+//    静态内部类，内部含一个私有的成员静态变量
     private static class Inner{
         private static T32_Singleton singleton = new T32_Singleton();
     }

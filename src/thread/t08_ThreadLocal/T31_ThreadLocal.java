@@ -21,6 +21,8 @@ public class T31_ThreadLocal {
     public static void main(String[] args) {
         new Thread(()->{
             try{
+                final ThreadLocal<Person> personThreadLocal = ThreadLocal.withInitial(() -> new Person());
+                System.out.println("=============" + personThreadLocal);
                 TimeUnit.SECONDS.sleep(2);
             }catch (InterruptedException e){
                 e.printStackTrace();

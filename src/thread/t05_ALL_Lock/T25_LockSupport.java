@@ -13,6 +13,7 @@ import java.util.concurrent.locks.LockSupport;
  * @version 1.0.0
  */
 public class T25_LockSupport {
+
     public static void main(String[] args) {
         Thread t = new Thread(() -> {
             for (int i = 0; i < 10; i++) {
@@ -35,11 +36,11 @@ public class T25_LockSupport {
 //        LockSupport.unpark(t);
 //        8秒后 unpark() 线程继续执行
         try {
-            TimeUnit.SECONDS.sleep(8);
+            TimeUnit.SECONDS.sleep(18);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("after 8 senconds!");
+        System.out.println("after 18 senconds!");
 
         LockSupport.unpark(t);
 

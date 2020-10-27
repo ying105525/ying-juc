@@ -7,7 +7,7 @@ import java.util.concurrent.Semaphore;
  * 功能：限流。允许多少个线程同时执行
  * 读作：[ˈseməfɔː(r)]
  * 举例：车道和收费站，8车道，2个收费站
- * @author Ying BG338501
+ * @author Ying
  * Date: 2020/9/2
  * @version 1.0.0
  */
