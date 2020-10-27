@@ -30,6 +30,7 @@ public class T55_CompletableFuture {
         CompletableFuture<Double> futureTM = CompletableFuture.supplyAsync(()->priceOfTM());
         CompletableFuture<Double> futureTB = CompletableFuture.supplyAsync(()->priceOfTB());
         CompletableFuture<Double> futureJD = CompletableFuture.supplyAsync(()->priceOfJD());
+        CompletableFuture<Double> future = CompletableFuture.supplyAsync(()->2.0 );
 
 //        所有的都开始并且等待结果返回。Returns the result value when complete, or throws an
 //       (unchecked) exception if completed exceptionally.
@@ -55,18 +56,21 @@ public class T55_CompletableFuture {
     private static double priceOfTM() {
         delay();
         System.out.println("获取到了TM的价格");
+        System.out.println("\n");
         return 1.00;
     }
 
     private static double priceOfTB() {
         delay();
         System.out.println("获取到了TB的价格");
+        System.out.println("\n");
         return 2.00;
     }
 
     private static double priceOfJD() {
         delay();
         System.out.println("获取到了JD的价格");
+        System.out.println("\n");
         return 3.00;
     }
 

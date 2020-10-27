@@ -94,51 +94,76 @@ public class T56_FiveKindOfPool {
 //        end = System.currentTimeMillis();
 //        System.out.println(end - start);
 //
-//        /**
-//         * ScheduledPool
-//         * new ScheduledThreadPoolExecutor(corePoolSize);
-//         *         super(corePoolSize, Integer.MAX_VALUE, 0, NANOSECONDS,
-//         *               new DelayedWorkQueue());
-//         *  Creates a thread pool that can schedule commands to run after a
-//         *  given delay, or to execute periodically.
-//         */
-//        System.out.println("---------------------------------------------------");
-//        ScheduledExecutorService scheduledPool = Executors.newScheduledThreadPool(4);
-//        scheduledPool.scheduleAtFixedRate(()->{
-//            try {
-//                TimeUnit.MILLISECONDS.sleep(new Random().nextInt(1000));
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            System.out.println(Thread.currentThread().getName());
-//        }, 0, 500, TimeUnit.MILLISECONDS);
-
-
         /**
-         * WorkStealingPool
-         * 分叉组合的线程池，每个线程有自己单独的任务队列，当自己的线程完成自己的任务队列中的人物后会去其他线程的任务队列偷
-         * 内部实现new了一个 ForkJoinPool
-         * 这个类的目的是为了提供一个更方便的接口
-         * new ForkJoinPool(Runtime.getRuntime().availableProcessors(),
-         *   ForkJoinPool.defaultForkJoinWorkerThreadFactory,null, true);
-         *
+         * ScheduledPool
+         * new ScheduledThreadPoolExecutor(corePoolSize);
+         *         super(corePoolSize, Integer.MAX_VALUE, 0, NANOSECONDS,
+         *               new DelayedWorkQueue());
+         *  Creates a thread pool that can schedule commands to run after a
+         *  given delay, or to execute periodically.
          */
         System.out.println("---------------------------------------------------");
-        ExecutorService workStealingPool = Executors.newWorkStealingPool();
-        System.out.println(Runtime.getRuntime().availableProcessors());
+        ScheduledExecutorService scheduledPool = Executors.newScheduledThreadPool(4);
+        // 循环任务，按照上一次任务的发起时间计算下一次任务的开始时间
+        /**
+         *      * Creates and executes a periodic action that becomes enabled first
+         *      * after the given initial delay, and subsequently with the given
+         *      * period; that is executions will commence after
+         *      * {@code initialDelay} then {@code initialDelay+period}, then
+         *      * {@code initialDelay + 2 * period}, and so on.
+         *      * If any execution of the task
+         *      * encounters an exception, subsequent executions are suppressed.
+         *      * Otherwise, the task will only terminate via cancellation or
+         *      * termination of the executor.  If any execution of this task
+         *      * takes longer than its period, then subsequent executions
+         *      * may start late, but will not concurrently execute.
+         */
+        scheduledPool.scheduleAtFixedRate(()->{
+            try {
+                System.out.println("进入任务输出");
+                TimeUnit.MILLISECONDS.sleep(4000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(Thread.currentThread().getName());
+        }, 0, 500, TimeUnit.MILLISECONDS);
+        // 循环任务，以上一次任务的结束时间计算下一次任务的开始时间
+        scheduledPool.scheduleWithFixedDelay(()->{
+            try {
+                System.out.println("XXXXXXX");
+                TimeUnit.MILLISECONDS.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(Thread.currentThread().getName());
+        }, 0,1000,TimeUnit.MILLISECONDS);
 
-        workStealingPool.execute(new R(1000));
-        workStealingPool.execute(new R(2000));
-        workStealingPool.execute(new R(2000));
-        workStealingPool.execute(new R(2000)); //daemon
-        workStealingPool.execute(new R(2000));
-        workStealingPool.execute(new R(2000));
-        workStealingPool.execute(new R(2000));
-        workStealingPool.execute(new R(2000)); //daemon
-        workStealingPool.execute(new R(2000));
 
-        //由于产生的是精灵线程（守护线程、后台线程），主线程不阻塞的话，看不到输出
-        System.in.read();
+//        /**
+//         * WorkStealingPool
+//         * 分叉组合的线程池，每个线程有自己单独的任务队列，当自己的线程完成自己的任务队列中的人物后会去其他线程的任务队列偷
+//         * 内部实现new了一个 ForkJoinPool
+//         * 这个类的目的是为了提供一个更方便的接口
+//         * new ForkJoinPool(Runtime.getRuntime().availableProcessors(),
+//         *   ForkJoinPool.defaultForkJoinWorkerThreadFactory,null, true);
+//         *
+//         */
+//        System.out.println("---------------------------------------------------");
+//        ExecutorService workStealingPool = Executors.newWorkStealingPool();
+//        System.out.println(Runtime.getRuntime().availableProcessors());
+//
+//        workStealingPool.execute(new R(1000));
+//        workStealingPool.execute(new R(2000));
+//        workStealingPool.execute(new R(2000));
+//        workStealingPool.execute(new R(2000)); //daemon
+//        workStealingPool.execute(new R(2000));
+//        workStealingPool.execute(new R(2000));
+//        workStealingPool.execute(new R(2000));
+//        workStealingPool.execute(new R(2000)); //daemon
+//        workStealingPool.execute(new R(2000));
+//
+//        //由于产生的是精灵线程（守护线程、后台线程），主线程不阻塞的话，看不到输出
+//        System.in.read();
     }
 
     static class R implements Runnable {
