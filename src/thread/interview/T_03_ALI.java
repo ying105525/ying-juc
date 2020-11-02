@@ -1,7 +1,5 @@
 package thread.interview;
 
-import java.util.concurrent.locks.LockSupport;
-
 /**
  * desc: CAS
  *
@@ -10,35 +8,38 @@ import java.util.concurrent.locks.LockSupport;
  * @version 1.0.0
  */
 public class T_03_ALI {
+
     enum ReadyThread {T1, T2, T3}
+
     static volatile ReadyThread r = ReadyThread.T1;
+
     public static void main(String[] args) {
-        new Thread(()->{
-            while(true){
-                if(r == ReadyThread.T1) {
+        new Thread(() -> {
+            while (true) {
+                if (r == ReadyThread.T1) {
                     System.out.print("A");
                     r = ReadyThread.T2;
                 }
             }
-        },"t1").start();
+        }, "t1").start();
 
-        new Thread(()->{
-            while(true){
-                if(r == ReadyThread.T2) {
+        new Thread(() -> {
+            while (true) {
+                if (r == ReadyThread.T2) {
                     System.out.print("L");
                     r = ReadyThread.T3;
                 }
             }
-        },"t2").start();
+        }, "t2").start();
 
-        new Thread(()->{
-            while(true){
-                if(r == ReadyThread.T3){
+        new Thread(() -> {
+            while (true) {
+                if (r == ReadyThread.T3) {
                     System.out.print("i");
                     r = ReadyThread.T1;
                 }
             }
-        },"t3").start();
+        }, "t3").start();
 
     }
 }

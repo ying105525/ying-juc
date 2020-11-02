@@ -4,7 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * desc: AtomicInteger
- *
+ * 三个线程依次输出ALI ALI
  * @author Ying BG338501
  * Date: 2020/10/27
  * @version 1.0.0
